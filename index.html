@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+  <title>PWA Cámara Instalable</title>
+
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="icon" href="./icons/icon-192.png">
+
+  <!-- iOS: icono de pantalla de inicio y modo app -->
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Cámara PWA">
+</head>
+<body>
+  <header>
+    <h1>Cámara PWA</h1>
+    <button id="btn-instalar" type="button" hidden>Instalar App</button>
+  </header>
+
+  <main>
+    <!-- Solo se muestra en iPhone/iPad cuando NO esta instalada -->
+    <div id="instrucciones-ios" class="card aviso-ios" hidden>
+      <p>
+        <strong>Para instalar en iPhone</strong>, pulsa el icono
+        <strong>Compartir</strong> y selecciona <strong>"Agregar a inicio"</strong>.
+      </p>
+    </div>
+
+    <section class="card">
+      <h2>Vista previa de cámara</h2>
+      <p id="estado-camara" class="estado">Cámara apagada.</p>
+
+      <div class="contenedor-video">
+        <video id="visor-camara" autoplay playsinline muted></video>
+      </div>
+
+      <!-- Paso 1: el usuario muestra su intencion -->
+      <button id="btn-preparar-camara" type="button">Activar cámara</button>
+
+      <!-- Paso 2: aviso etico antes del permiso nativo -->
+      <div id="aviso-permiso" class="aviso-permiso" hidden>
+        <h3>Antes de continuar</h3>
+        <p>
+          Esta aplicación requiere acceso a tu cámara únicamente para mostrar una
+          vista previa local en pantalla. Ninguna imagen se envía a servidores externos.
+        </p>
+        <p>Se encenderá primero la <strong>cámara trasera</strong>. Después podrás cambiar a la frontal.</p>
+        <div class="botones">
+          <button id="btn-confirmar-permiso" type="button">Entendido, permitir cámara</button>
+          <button id="btn-cancelar-permiso" type="button" class="secundario">Ahora no</button>
+        </div>
+      </div>
+
+      <!-- Controles de la camara encendida -->
+      <div class="botones">
+        <button id="btn-alternar-camara" type="button" disabled>Cambiar cámara</button>
+        <button id="btn-apagar-camara" type="button" class="peligro" disabled>Apagar cámara</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
